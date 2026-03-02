@@ -1,4 +1,3 @@
-# FROM node:20-alpine AS BUILDER
 FROM nginx:stable-alpine
 WORKDIR /app
 RUN rm -rf /usr/share/nginx/html/*
