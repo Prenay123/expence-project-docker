@@ -1,12 +1,14 @@
-FROM node:20-alpine AS BUILDER
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . . 
-RUN npm run build 
-
+# FROM node:20-alpine AS BUILDER
 FROM nginx:stable-alpine
+WORKDIR /app
+# COPY package*.json ./
+# RUN npm install
+# COPY . . 
+# RUN npm run build 
+
+
 RUN rm -rf /usr/share/nginx/html/*
-COPY --from=BUILDER /app/build /usr/share/nginx/html
+COPY . .
+
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
